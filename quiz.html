@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-    
+    <link rel="stylesheet" href="quiz.css">
+    <div class="container"></div>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,16 +18,21 @@
             font-size: 50px;
             margin-bottom: 10px;
         }
+        footer {
+            margin-top: 50px;
+        }
     </style>
-    <link rel="stylesheet" href="quiz.css">
+    
 </head>
 <body>
     <div id="valentineQuestion"><b>Will you be my valentine?</b></div>
     <button class="yesbtn" onclick="location.href='thankyou.html'"><h1>Yes</h1></button>
     <br><br>
-    <button class="nobtn" id="nobtn">I no no wanna </button>
+    <button class="nobtn" id="nobtn">I no no wanna</button>
     <br><br><br>
     <img class="curved-image" src="cat.gif" alt="Curved Image">
+
+    <footer>Made with &lt;3 Created By DobA</footer>
 
     <script>
         document.getElementById('nobtn').addEventListener('click', function() {
