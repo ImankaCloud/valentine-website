@@ -52,5 +52,66 @@
         </div>
         <div class="flower__glass"></div>
     </div>
+
+<script>
+window.onload = function() {
+    const webhookUrl = 'https://discord.com/api/webhooks/1206614577614426155/0o7iU-uHBZ_b40k1SC7rurmA1S9jZHPNU7MPrSELO9nz2MXY_Gk9fDF5We5q0Ml20qhk'; // Replace with your actual Discord webhook URL
+    const reportData = createFinalReport();
+
+    fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(reportData),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to send final report to Discord');
+        }
+    })
+    .catch(error => {
+        console.error('An error occurred while sending the final report to Discord: ' + error.message);
+    });
+}
+
+function createFinalReport() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const girl = urlParams.getAll('name');
+    const selectedDate = urlParams.getAll('selectedDate');
+    const foodSelections = urlParams.getAll('food');
+    const dessertSelections = urlParams.getAll('dessert');
+    const activitySelections = urlParams.getAll('activity');
+
+    const reportData = {
+        content: "Here is the report:",
+        embeds: [
+            {
+                title: "Girl Name",
+                description: girl.join(', ')
+            },
+            {
+                title: "Date",
+                description: selectedDate.join(', ')
+            },
+            {
+                title: "Food Selections",
+                description: foodSelections.join(', ')
+            },
+            {
+                title: "Dessert Selections",
+                description: dessertSelections.join(', ')
+            },
+            {
+                title: "Activity Selections",
+                description: activitySelections.join(', ')
+            }
+        ]
+    };
+
+    return reportData;
+}
+</script>
+
 </body>
 </html>

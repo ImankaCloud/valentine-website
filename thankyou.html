@@ -29,9 +29,10 @@
             background-color:#FFE3E1;
             color: #e67373;
             border-radius: 12px;
-            border: 2px solid #6e6e6e;
+            border: 2px solid #FFE3E1;
         }
 	</style>
+    
 </head>
 <body>
 	<div id="thankyou"><b>Thank you</b></div>
@@ -43,6 +44,22 @@
 		Your browser does not support the audio element.
 	</audio>
 	<p>Don't go yet!</p>
-	<button class="button" onclick="location.href='date.html'"> Click me UWU</button>
+	<button class="button" onclick="redirectToDatePage()"> Click me UWU</button>
+
+    <script>
+        function redirectToDatePage() {
+            var currentUrl = window.location.href;
+            var nameParam = getQueryParam('name');
+            var separator = currentUrl.indexOf('?') !== -1 ? '?' : '?';
+            var redirectUrl = 'date.html' + (nameParam ? separator + 'name=' + nameParam : '');
+    
+            location.href = redirectUrl;
+        }
+
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+    </script>
 </body>
 </html>
