@@ -31,43 +31,18 @@
     </style>
 </head>
 <body>
-
     <div id="valentineQuestion"><b>Will you be my valentine?</b></div>
-    <button class="answerButton" id="yesButton">Yes</button>
+    <button class="answerButton" onclick="location.href='thankyou.html'">Yes</button>
     <button class="answerButton" id="noButton">I no no wanna o(╥﹏╥)o</button>
     <br>
     <img src ='cat.gif' alt = 'cat asking question' class="responsive">
 
     <script>
-        function sendToDiscord(answer) {
-            var webhookUrl = 'https://discord.com/api/webhooks/1206612984755912704/zwlNDxxfomSFs2yqii4mU4EKr2xnAff06gt8g2B2tA34tE5PCWRCLXXLS-iVCM-eo99s'; // Replace with your Discord webhook URL
-            var request = new XMLHttpRequest();
-            request.open("POST", webhookUrl);
-            request.setRequestHeader('Content-type', 'application/json');
-
-            var params = {
-                username: "Valentine Bot MGEAMIND",
-                avatar_url: "",
-                content: "Someone answered your valentine question with: " + answer
-            };
-
-            request.send(JSON.stringify(params));
-        }
-
-        document.getElementById('yesButton').addEventListener('click', function() {
-            sendToDiscord('Yes');
-            setTimeout(function() {
-                window.location.href = 'thankyou.html';
-            }, 500);
-        });
-
         document.getElementById('noButton').addEventListener('click', function() {
-            var yesButton = document.getElementById('yesButton');
+            var yesButton = document.querySelector('button[onclick*="thankyou.html"]');
             var currentFontSize = parseInt(window.getComputedStyle(yesButton).fontSize);
-            yesButton.style.fontSize = (currentFontSize + 10) + 'px';
-            sendToDiscord('No');
+            yesButton.style.fontSize = (currentFontSize + 10) + 'px'; // Increase font size by 5px
         });
-
     </script>
 </body>
 </html>
