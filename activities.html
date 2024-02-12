@@ -27,7 +27,6 @@
             height: auto;
 			padding: 10px;
         }
-
         .activity-item label {
             display: block;
         }
@@ -41,9 +40,23 @@
             background-color:#FFE3E1;
             color: #e67373;
             border-radius: 12px;
-            border: 2px solid #6e6e6e;
+            border: 2px solid #FFE3E1;
         }
 	</style>
+	<script>
+       
+        function continueToLastPage() {
+            const selectedActivities = Array.from(document.querySelectorAll('input[name="activities"]:checked'))
+                                    .map(activity => activity.value);
+            const lastPageUrl = 'lastpage.html';
+            const queryParams = new URLSearchParams(window.location.search);
+            selectedActivities.forEach(activity => {
+                queryParams.append('activity', activity);
+            });
+            const nextPageUrl = `${lastPageUrl}?${queryParams.toString()}`;
+            window.location.href = nextPageUrl;
+        }
+    </script>
 </head>
 <body>
 	<div id="activityquestion"><b>What are we doing after?</b>
@@ -74,6 +87,7 @@
 			<label><input type="checkbox" name="activities" value ="park.jpeg">park</label>
 		</div>
 	</div>
-	<button class = "button" onclick="location.href='lastpage.html'">Last page</button>
+	<button class="button" onclick="continueToLastPage()">Last page</button>
+
 </body>
 </html>

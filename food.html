@@ -37,13 +37,27 @@
             margin: 10px;
             font-family: 'courier';
             margin-bottom: 20px;
-            border-color: #ff0000;
             background-color:#FFE3E1;
             color: #e67373;
             border-radius: 12px;
-            border: 2px solid #6e6e6e;
+            border: 2px solid #FFE3E1;
         }
     </style>
+   <script>
+    function continueToDessertPage() {
+        const selectedFoods = Array.from(document.querySelectorAll('input[name="food"]:checked'))
+                                .map(food => food.value);
+
+        const dessertPageUrl = 'dessert.html';
+        const queryParams = new URLSearchParams(window.location.search);
+        selectedFoods.forEach(food => {
+            queryParams.append('food', food);
+        });
+
+        const nextPageUrl = `${dessertPageUrl}?${queryParams.toString()}`;
+        window.location.href = nextPageUrl;
+    }
+</script>
 </head>
 <body>
     <div id="foodquestion"><b><u>What food would you like to eat?</u></b></div>
@@ -82,7 +96,9 @@
             <label><input type="checkbox" name="food" value="sushi"> sushi</label>
         </div>
     </div>
-    <button class ="button"onclick="location.href='dessert.html'">Continue UWU</button>
+    <button class="button" onclick="continueToDessertPage()">Continue UWU</button>
+
     
+
 </body>
 </html>

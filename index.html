@@ -24,24 +24,38 @@
             font-family: 'courier';
             margin-bottom: 20px;
             background-color:#FFE3E1;
-            color: #f30707;
+            color: #e67373;
             border-radius: 12px;
-            border: 2px solid #6e6e6e;
+            border: 2px solid #FFE3E1;
         }
     </style>
 </head>
 <body>
     <div id="valentineQuestion"><b>Will you be my valentine?</b></div>
-    <button class="answerButton" onclick="location.href='thankyou.html'">Yes</button>
+    <button class="answerButton" onclick="redirectToThankYou()">Yes</button>
     <button class="answerButton" id="noButton">I no no wanna o(╥﹏╥)o</button>
     <br>
     <img src ='cat.gif' alt = 'cat asking question' class="responsive">
 
     <script>
-        document.getElementById('noButton').addEventListener('click', function() {
-            var yesButton = document.querySelector('button[onclick*="thankyou.html"]');
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        function redirectToThankYou() {
+            var name = getQueryParam('name');
+            var baseUrl = 'thankyou.html';
+            if (name) {
+                baseUrl += '?name=' + name; 
+            }
+            location.href = baseUrl;
+        }
+
+        document.getElementById('noButton').addEventListener('click', function () {
+            var yesButton = document.querySelector('button[onclick*="redirectToThankYou"]');
             var currentFontSize = parseInt(window.getComputedStyle(yesButton).fontSize);
-            yesButton.style.fontSize = (currentFontSize + 10) + 'px'; // Increase font size by 5px
+            yesButton.style.fontSize = (currentFontSize + 10) + 'px'; // Increase font size by 10px
         });
     </script>
 </body>

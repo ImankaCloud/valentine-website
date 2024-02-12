@@ -41,9 +41,23 @@
             background-color:#FFE3E1;
             color: #e67373;
             border-radius: 12px;
-            border: 2px solid #6e6e6e;
+            border: 2px solid #FFE3E1;
         }
 	</style>
+
+<script>
+    function continueToActivitiesPage() {
+        const selectedDesserts = Array.from(document.querySelectorAll('input[name="dessert"]:checked'))
+                                .map(dessert => dessert.value);
+        const activitiesPageUrl = 'activities.html';
+        const queryParams = new URLSearchParams(window.location.search);
+        selectedDesserts.forEach(dessert => {
+            queryParams.append('dessert', dessert);
+        });
+        const nextPageUrl = `${activitiesPageUrl}?${queryParams.toString()}`;
+        window.location.href = nextPageUrl;
+    }
+</script>
 </head>
 <body>
 	<div id = "dessertquestion"> Which dessert we eatin cuh </div>
@@ -74,7 +88,7 @@
 			<label><input type="checkbox" name="dessert" value="taiyaki"> taiyaki</label>
 		</div>	
 	</div>
-	<button class = "button" onclick="location.href='activities.html'">Continue UWU</button>
+	<button class="button" onclick="continueToActivitiesPage()">Continue UWU</button>
 
 </body>
 </html>
