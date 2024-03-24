@@ -29,7 +29,18 @@
             background-color:#FFE3E1;
             color: #e67373;
             border-radius: 12px;
-            border: 2px solid #6e6e6e;
+            border: 2px solid #969696;
+        }
+        @media only screen and (max-width: 600px) {
+            #thankyou {
+                font-size: 30px;
+            }
+            .button {
+                font-size: 16px;
+            }
+            #player {
+                width: 100%; /* Adjust video width to fit smaller screens */
+            }
         }
 	</style>
     
@@ -37,15 +48,11 @@
 <body>
 	<div id="thankyou"><b>Thank you</b></div>
 
-	<img id = "rizz" src = 'rizz.gif' alt = "rizzler god" class="responsive">
-	<br>
-    <audio controls autoplay>
-		<source src="congratulations.mp3" type="audio/mpeg">
-		Your browser does not support the audio element.
-	</audio>
+    <div id="player"></div>
+    <br>
 	<p>Don't go yet!</p>
 	<button class="button" onclick="redirectToDatePage()"> Click me UWU</button>
-
+    <script src="https://www.youtube.com/iframe_api"></script>
     <script>
         function redirectToDatePage() {
             var currentUrl = window.location.href;
@@ -59,6 +66,29 @@
         function getQueryParam(param) {
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(param);
+        }
+
+        var player;
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                videoId: 'CYI30GJFPBI',
+                playerVars: {
+                    'autoplay': 1,
+                    'controls': 0,
+                    'showinfo': 0,
+                    'rel': 0,
+                    'modestbranding': 1,
+                    'iv_load_policy': 3,
+                },
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            event.target.playVideo();
         }
     </script>
 </body>
